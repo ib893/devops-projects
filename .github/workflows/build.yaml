@@ -1,5 +1,4 @@
-name: Build and push docker image
-
+name: ibrahimadedayo/kub24:nginx:1.27
 on:
   push:
     branches:
