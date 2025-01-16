@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.ibrahimadedayo }}
           password: ${{ secrets.goodfellas2 }}
       -
-        name: Build and push
+        name: ibrahimadedayo/nginix:1:27
         uses: docker/build-push-action@v5
         with:
           context: devops-projects/docker_cicd_github_action/.
