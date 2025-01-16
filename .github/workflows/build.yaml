@@ -1,4 +1,4 @@
-name: ibrahimadedayo/nginx:1.27
+name: ibrahimadedayo/kub24
 on:
   push:
     branches:
@@ -33,4 +33,4 @@ jobs:
         with:
           context: devops-projects/docker_cicd_github_action/.
           push: false
-          tags: ${{ secrets.ibrahimadedayo }}/${{ env.nginx:1.27 }}:${{ env.nginx:1.27 }}
+          tags: ${{ secrets.ibrahimadedayo }}/${{ env.kub24 }}:${{ env.kub24 }}
