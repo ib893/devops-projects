@@ -5,8 +5,8 @@ on:
       - 'main'
       
 env:
-  IMAGE_NAME: note-app
-  IMAGE_TAG: latest
+  IMAGE_NAME: nginx
+  IMAGE_TAG: 1.27
 
 jobs:
   docker:
