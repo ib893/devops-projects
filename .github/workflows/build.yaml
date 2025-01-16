@@ -1,12 +1,12 @@
-name: ibrahimadedayo/kub24
+name: ibrahimadedayo/alpine:latest
 on:
   push:
     branches:
       - 'main'
       
 env:
-  IMAGE_NAME: nginx
-  IMAGE_TAG: 1.27
+  IMAGE_NAME: alpine
+  IMAGE_TAG: latest
 
 jobs:
   docker:
@@ -33,4 +33,4 @@ jobs:
         with:
           context: devops-projects/docker_cicd_github_action/.
           push: false
-          tags: ${{ secrets.ibrahimadedayo }}/${{ env.kub24 }}:${{ env.kub24 }}
+          tags: ${{ secrets.ibrahimadedayo }}/${{ env.alpine:latest }}:${{ env.alpine:latest }}
