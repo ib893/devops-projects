@@ -1,4 +1,4 @@
-name: ibrahimadedayo/alpine:latest
+name: alpine:latest
 on:
   push:
     branches:
