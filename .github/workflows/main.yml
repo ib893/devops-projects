@@ -17,7 +17,7 @@ jobs:
     steps:
     # Check out the repository code
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.1.2
       
     # Example step for setting up a Node.js environment
     - name: Setup Node.js
@@ -44,7 +44,7 @@ jobs:
       
     # Example artifact upload
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v3.1.2
       with:
         name: build-files
         path: dist/
@@ -60,7 +60,7 @@ jobs:
     steps:
     # Check out the repository code again
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3.1.2
       
     # Download the artifacts from the build job
     - name: Download build artifacts
