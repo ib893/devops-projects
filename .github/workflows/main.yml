@@ -1,0 +1,85 @@
+name: CI Pipeline
+
+# Trigger the workflow on push or pull request events but only for the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  build:
+    # Specify that this job should run on self-hosted runners
+    runs-on: self-hosted
+    
+    steps:
+    # Check out the repository code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    # Example step for setting up a Node.js environment
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    # Install dependencies
+    - name: Install dependencies
+      run: npm ci
+      
+    # Run linting
+    - name: Lint
+      run: npm run lint
+      
+    # Run tests
+    - name: Test
+      run: npm test
+      
+    # Build the application
+    - name: Build
+      run: npm run build
+      
+    # Example artifact upload
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-files
+        path: dist/
+
+  deploy:
+    # This job depends on the build job
+    needs: build
+    runs-on: self-hosted
+    
+    # Only run deployments on the main branch, not on PRs
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    
+    steps:
+    # Check out the repository code again
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    # Download the artifacts from the build job
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-files
+        path: dist/
+        
+    # Example deployment step
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production server..."
+        # Add your deployment commands here
+        # For example: rsync, scp, or custom deployment script
+        ./scripts/deploy.sh
+      
+    # Notify about successful deployment
+    - name: Send notification
+      if: success()
+      run: |
+        echo "Deployment completed successfully!"
+        # Add notification commands here (Slack, email, etc.)
