@@ -5,8 +5,7 @@ on:
       - 'main'
       
 env:
-  IMAGE_NAME: alpine
-  IMAGE_TAG: latest
+  IMAGE_NAME: alpine:latest
 
 jobs:
   docker:
